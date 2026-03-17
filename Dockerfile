@@ -11,11 +11,9 @@ RUN apt-get update \
     && xargs -r -a packages.txt apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt install.sh ./
+COPY requirements.txt ./
 
-RUN chmod +x install.sh \
-    && ./install.sh \
-    && rm -rf /root/.cache/pip
+RUN pip install -r requirements.txt
 
 COPY . .
 
